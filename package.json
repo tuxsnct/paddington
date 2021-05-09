@@ -1,0 +1,47 @@
+{
+  "name": "paddington",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Please look after this bear. Thank you. 🐻",
+  "homepage": "https://github.com/tuxsnct/paddington",
+  "bugs": {
+    "url": "https://github.com/tuxsnct/paddington/issues",
+    "email": "work@tuxsnct.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuxsnct/paddington.git"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Hideki Tanaka",
+    "email": "work@tuxsnct.com",
+    "url": "https://tuxsnct.com"
+  },
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "sort": "sort-package-json"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^9.0.11",
+    "@types/node": "^15.0.2",
+    "@types/string-similarity": "^4.0.0",
+    "dotenv": "^9.0.0",
+    "fs-extra": "^10.0.0",
+    "google-translate-open-api": "^1.3.7",
+    "log4js": "^6.3.0",
+    "playwright": "^1.10.0",
+    "string-similarity": "^4.0.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.1",
+    "@commitlint/config-conventional": "^12.1.1",
+    "eslint": "^7.26.0",
+    "eslint-config-tuxsnct-typescript": "^3.0.1",
+    "husky": "^6.0.0",
+    "sort-package-json": "^1.50.0"
+  }
+}
