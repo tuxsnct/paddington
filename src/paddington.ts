@@ -6,7 +6,7 @@ import {
   BrowserContext,
   ElementHandle,
   Page,
-  webkit
+  chromium
 } from 'playwright'
 import { findBestMatch } from 'string-similarity'
 
@@ -29,7 +29,7 @@ const initInstance = async (
       writeFileSync(answersPath, '{}')
     }
   }
-  const browser: Browser = await webkit.launch({
+  const browser: Browser = await chromium.launch({
     headless: isEnabledHeadless
   })
   const context: BrowserContext = await browser.newContext({
