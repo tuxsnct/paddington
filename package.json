@@ -24,7 +24,7 @@
     "sort": "sort-package-json"
   },
   "dependencies": {
-    "@types/fs-extra": "9.0.11",
+    "@types/fs-extra": "9.0.13",
     "@types/node": "15.0.2",
     "@types/string-similarity": "4.0.0",
     "dotenv": "9.0.0",
