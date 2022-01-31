@@ -106,15 +106,18 @@ const resolveUnit = async (page: Page, answersPath: string): Promise<Page> => {
     const answers = JSON.parse(readFileSync(answersPath).toString())
     const answerKeys: string[] = Object.keys(answers)
     const answerValues: string[] = Object.values(answers)
-    let answerIndex: number
+    let answerIndex = 0;
 
     if (answerKeys.includes(questionValue)) {
       answerIndex = values.indexOf(answerValues[answerKeys.indexOf(questionValue)])
     } else {
       const result = await translate(values, { tld: 'com', to: 'en', client: 'dict-chrome-ex' })
-      const translatedValues = parseMultiple(result.data[0])
-      const { bestMatchIndex } = findBestMatch(questionValue, translatedValues)
-      answerIndex = bestMatchIndex
+      const data = result.data[0]
+      if (Array.isArray(data)) {
+        const translatedValues = parseMultiple(data)
+        const { bestMatchIndex } = findBestMatch(questionValue, translatedValues)
+        answerIndex = bestMatchIndex
+      }
     }
 
     await page.click(`input#answer_0_${answerIndex}`)
