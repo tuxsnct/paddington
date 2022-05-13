@@ -14,7 +14,7 @@ specifiers:
   google-translate-open-api: 1.3.7
   husky: 8.0.1
   log4js: 6.4.6
-  puppeteer: 14.0.0
+  puppeteer: 14.1.0
   puppeteer-extra: 3.2.3
   puppeteer-extra-plugin-stealth: 2.9.0
   sort-package-json: 1.57.0
@@ -31,8 +31,8 @@ dependencies:
   fs-extra: 10.1.0
   google-translate-open-api: 1.3.7
   log4js: 6.4.6
-  puppeteer: 14.0.0
-  puppeteer-extra: 3.2.3_puppeteer@14.0.0
+  puppeteer: 14.1.0
+  puppeteer-extra: 3.2.3_puppeteer@14.1.0
   puppeteer-extra-plugin-stealth: 2.9.0_puppeteer-extra@3.2.3
   string-similarity: 4.0.4
   ts-node: 10.7.0_5f3e12794cebfbf3197131903b74d233
@@ -4972,12 +4972,12 @@ packages:
       '@types/debug': 4.1.7
       debug: 4.3.4
       merge-deep: 3.0.3
-      puppeteer-extra: 3.2.3_puppeteer@14.0.0
+      puppeteer-extra: 3.2.3_puppeteer@14.1.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /puppeteer-extra/3.2.3_puppeteer@14.0.0:
+  /puppeteer-extra/3.2.3_puppeteer@14.1.0:
     resolution: {integrity: sha512-CnSN9yIedbAbS8WmRybaDHJLf6goRk+VYM/kbH6i/+EMadCaAeh2O+1/mFUMN2LbkbDNAp2Vd/UwrTVCHjTxyg==}
     engines: {node: '>=8'}
     peerDependencies:
@@ -4987,13 +4987,13 @@ packages:
       '@types/puppeteer': 5.4.6
       debug: 4.3.4
       deepmerge: 4.2.2
-      puppeteer: 14.0.0
+      puppeteer: 14.1.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /puppeteer/14.0.0:
-    resolution: {integrity: sha512-Aj/cySGBMWpUYEWV0YOcwyhq5lOxuuiGScgdj/OvslAm/ydoywiI8OzAIXT4HzKmNTmzm/fKKHHtcsQa/fFgdw==}
+  /puppeteer/14.1.0:
+    resolution: {integrity: sha512-T3eB4f6k9HVttYvyy8drGIKb04M+vxhepqM7qqcVCBTNT3T6M9cUaJT4k7P+a6wSonObJSJUP98JkPDQG+3fJw==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
