@@ -1,10 +1,7 @@
 import { config } from 'dotenv'
-import {
-  initInstance,
-  initPage,
-  resolveUnits
-} from './paddington'
+import { initBrowser, initPage, resolveUnits } from './paddington'
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises, max-statements
 (async () => {
   config()
 
@@ -18,6 +15,8 @@ import {
   const password = process.env.PADDINGTON_PASSWORD
   const answersPath = process.env.PADDINGTON_ANSWERS_PATH
   const isEnabledHeadless = process.env.PADDINGTON_HEADLESS
+  const sleepPerQuestion = process.env.PADDINGTON_SLEEP_PER_QUESTION
+  const proxyServer = process.env.PADDINGTON_PROXY_SERVER
 
   if (
     answersPath &&
@@ -30,18 +29,28 @@ import {
     id &&
     password
   ) {
-    const instance = await initInstance(answersPath, isEnabledHeadless?.toLowerCase() === 'true')
-    const page = await initPage(instance, url, id, password)
+    const proxyServerUrl = proxyServer ? new URL(proxyServer) : undefined
+    const browser = await initBrowser(
+      answersPath,
+      isEnabledHeadless?.toLowerCase() === 'true',
+      proxyServerUrl
+    )
+    const page = await initPage(browser, url, id, password)
     await resolveUnits(
       page,
-      parseInt(referenceId),
-      parseInt(firstUnitId),
-      parseInt(lastUnitId),
+      Number.parseInt(referenceId, 10),
+      Number.parseInt(firstUnitId, 10),
+      Number.parseInt(lastUnitId, 10),
       answersPath,
-      parseInt(firstQuestionNumber),
-      parseInt(lastQuestionNumber)
+      {
+        firstQuestionNumber: Number.parseInt(firstQuestionNumber, 10),
+        lastQuestionNumber: Number.parseInt(lastQuestionNumber, 10),
+        // eslint-disable-next-line no-undefined
+        sleepPerQuestion: sleepPerQuestion ? Number.parseInt(sleepPerQuestion, 10) : undefined,
+        proxyServer: proxyServerUrl
+      }
     )
     await page.close()
-    await instance.browser.close()
+    await browser.close()
   }
 })()
