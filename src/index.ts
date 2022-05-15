@@ -29,6 +29,7 @@ import { initBrowser, initPage, resolveUnits } from './paddington'
     id &&
     password
   ) {
+    // eslint-disable-next-line no-undefined
     const proxyServerUrl = proxyServer ? new URL(proxyServer) : undefined
     const browser = await initBrowser(
       answersPath,
@@ -45,9 +46,9 @@ import { initBrowser, initPage, resolveUnits } from './paddington'
       {
         firstQuestionNumber: Number.parseInt(firstQuestionNumber, 10),
         lastQuestionNumber: Number.parseInt(lastQuestionNumber, 10),
+        proxyServer: proxyServerUrl,
         // eslint-disable-next-line no-undefined
-        sleepPerQuestion: sleepPerQuestion ? Number.parseInt(sleepPerQuestion, 10) : undefined,
-        proxyServer: proxyServerUrl
+        sleepPerQuestion: sleepPerQuestion ? Number.parseInt(sleepPerQuestion, 10) : undefined
       }
     )
     await page.close()
