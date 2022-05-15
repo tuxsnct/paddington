@@ -20,8 +20,8 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
-    "sort": "sort-package-json"
+    "lint": "eslint .",
+    "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
     "@types/fs-extra": "9.0.13",
@@ -44,7 +44,6 @@
     "@commitlint/config-conventional": "16.2.4",
     "eslint": "8.15.0",
     "eslint-config-tuxsnct": "4.1.1",
-    "husky": "8.0.1",
-    "sort-package-json": "1.57.0"
+    "husky": "8.0.1"
   }
 }
