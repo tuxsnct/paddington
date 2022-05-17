@@ -27,7 +27,7 @@ const initBrowser = async (
     }
   }
   const defaultArguments = ['--lang=ja']
-  proxyServer && defaultArguments.push(`--proxy-server=${proxyServer.toString()}`)
+  proxyServer && defaultArguments.push(`--proxy-server=${proxyServer.host}`)
   const browser = await puppeteer.launch({ args: defaultArguments, headless: isEnabledHeadless })
   logger.info('instance has been initialized')
 
@@ -72,12 +72,12 @@ const selectReference = async (page: Page, referenceId: number): Promise<Page> =
   return page
 }
 
-const calcUnitId = (firstUnitId: number, lastQuestionNumber: number) => firstUnitId + lastQuestionNumber / 25 * 4 - 4
+const calcUnitId = (firstUnitId: number, lastQuestionNumber: number) => firstUnitId + (lastQuestionNumber / 25 * 4) - 4
 
-const selectUnit = async (page: Page, unitId: number): Promise<Page> => {
-  await page.evaluate(`select_unit('drill', '${unitId}', '')`)
+const selectUnit = async (page: Page, currentUnitId: number): Promise<Page> => {
+  await page.evaluate(`select_unit('drill', '${currentUnitId}', '')`)
   await page.waitForNavigation()
-  logger.info(`selected unit: ${unitId}`)
+  logger.info(`selected unit: ${currentUnitId}`)
   return page
 }
 
@@ -137,7 +137,7 @@ const resolveUnit = async (
       ])
       const drillForm = await page.$('div#drill_form')
       const elementAnswer = drillForm && await (await drillForm.getProperty('textContent')).jsonValue<string>()
-      const answer = elementAnswer?.split('：')[1].replace(/\r?\n/u, '')
+      const answer = elementAnswer?.split('：')[1].replace(/\r?\n/gu, '')
       const currectJson = JSON.parse(readFileSync(answersPath).toString()) as unknown as JSON
       writeJSONSync(answersPath, Object.assign(currectJson, { [questionValue]: answer }))
     } else {
@@ -176,6 +176,10 @@ const resolveUnits = async (
   let currentUnitId = firstUnitId
   if (options && options.firstQuestionNumber) {
     currentUnitId = calcUnitId(firstUnitId, options.firstQuestionNumber - 1) + 4
+  }
+  if (options && options.lastQuestionNumber) {
+    // eslint-disable-next-line no-param-reassign
+    lastUnitId = calcUnitId(firstUnitId, options.lastQuestionNumber) + 4
   }
 
   while (lastUnitId > currentUnitId) {
