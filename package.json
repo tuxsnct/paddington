@@ -37,7 +37,7 @@
     "puppeteer-extra-plugin-stealth": "2.9.0",
     "string-similarity": "4.0.4",
     "ts-node": "10.7.0",
-    "typescript": "4.6.4"
+    "typescript": "4.9.5"
   },
   "devDependencies": {
     "eslint": "8.15.0",
