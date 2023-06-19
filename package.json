@@ -34,7 +34,7 @@
     "log4js": "6.4.7",
     "puppeteer": "14.1.0",
     "puppeteer-extra": "3.2.3",
-    "puppeteer-extra-plugin-stealth": "2.9.0",
+    "puppeteer-extra-plugin-stealth": "2.11.2",
     "string-similarity": "4.0.4",
     "ts-node": "10.7.0",
     "typescript": "4.6.4"
